@@ -1,5 +1,14 @@
 .header{
+    position: sticky;
+    top: 0;
     display: flex;
+    justify-content: space-evenly;
+    border-bottom: 0.1px solid lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    z-index: 999;
+
 }
 .header__left {
     display: flex;
@@ -9,6 +18,7 @@
 .header__left > img{
     object-fit: contain;
     height:50px ;
+    margin-right: 10px;
 
 }
 .header__search{
@@ -18,6 +28,7 @@
     border-radius: 5px;
     height: 22px;
     color: gray;
+    background-color: #eef3f8;
 
 }
 .header__search > input {
@@ -25,4 +36,7 @@
     border: none;
     background: none;
 
+}
+.header__right {
+    display: flex;
 }
