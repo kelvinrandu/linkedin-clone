@@ -25,6 +25,7 @@ function Header({ children }) {
           <HeaderOption Icon={BusinessCenterIcon} title="Jobs"/>
           <HeaderOption Icon={ChatIcon} title="Messaging"/>
           <HeaderOption Icon={NotificationsIcon} title="Notifications"/>
+          <HeaderOption avatar="https://lh3.googleusercontent.com/ogw/ADea4I5aNx4aP1I8gm0lDsnn4Mhd3PQwqJZbtK4pjYwh=s32-c-mo" title="Moir"/>
           
       </div>
      
