@@ -1,5 +1,6 @@
 import React from "react";
 import "./Feed.css";
+import Post from "./Post";
 import CreateIcon from "@material-ui/icons/Create";
 import InputOption from "./InputOption";
 import ImageIcon from "@material-ui/icons/Image";
@@ -27,6 +28,8 @@ function Feed() {
             <InputOption  Icon ={CalendarViewDayIcon} title="Write article" color= "#7FC15E"/>
         </div>
       </div>
+
+      <Post name="nasty" description="all of me is nasty" message="nasty but me"/>
     </div>
   );
 }
