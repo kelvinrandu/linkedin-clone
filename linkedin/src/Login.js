@@ -13,6 +13,17 @@ function Login() {
 
    const signIn = (e) =>{ 
        e.preventDefault();
+
+       auth.signInWithEmailAndPassword(email, password)
+       .then(userAuth => {
+           dispatch(login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+            profileUrl: userAuth.user.photoURL,
+
+           }))
+       }).catch(error=> alert(error))
        
 
    }
