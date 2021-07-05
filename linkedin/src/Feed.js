@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState ,useEffect} from "react";
 import "./Feed.css";
 import Post from "./Post";
 import CreateIcon from "@material-ui/icons/Create";
@@ -7,14 +7,39 @@ import ImageIcon from "@material-ui/icons/Image";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/EventNote";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
+import {db} from "./firebase";
+import firebase from 'firebase'
 
 
 
 function Feed() {
+    const [input, setInput] = useState('');
     const [posts, setPosts] = useState([]);
+
+    useEffect(()=>{
+      db.collection("posts").onSnapshot(snapshot =>(
+        setPosts(snapshot.docs.map(doc =>(
+          {
+            id: doc.id,
+            data: doc.data(),
+
+          }
+        )))
+
+      ))
+
+    }, [])
      
     const handleSubmit = (e) => {
         e.preventDefault();
+        db.collection('posts').add({
+          name: 'kelvin randu',
+          description: 'this is a real deal',
+          message: input,
+          photoUrl:'',
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+        })
 
     }
   return (
@@ -23,8 +48,8 @@ function Feed() {
         <div className="feed__input">
           <CreateIcon />
           <form>
-            <input type="text" />
-            <button onclick={handleSubmit}type="submit">send</button>
+            <input  value={input} onChange={e => setInput(e.target.value)} type="text" />
+            <button onClick={handleSubmit}type="submit">send</button>
           </form>
         </div>
         <div className="feed__inputOptions">
@@ -34,8 +59,13 @@ function Feed() {
             <InputOption  Icon ={CalendarViewDayIcon} title="Write article" color= "#7FC15E"/>
         </div>
       </div>
-      {posts.map((post)=>(
-          <Post name="nasty" description="all of me is nasty" message="nasty but me"/>
+      {posts.map(({id,data:{ name, description, message,photoUrl }})=>(
+          <Post 
+            key={id}
+            name={name}
+            description={description}
+            message={message} 
+            photoUrl={photoUrl} />
 
       ))}
 
